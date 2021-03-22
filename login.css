@@ -1,0 +1,28 @@
+@charset "utf-8";
+.login {
+    background: #1D2D66;
+}
+#login {
+    padding-top: 13%;
+}
+.login h1 a {
+    margin-bottom: 100px;
+    width: 270px;
+    height: 40px;
+    background: url(img/common/logo.png) no-repeat center / 270px auto;
+}
+.login-password-protected {
+    background: url(img/common/login_bg.png) no-repeat center / cover;
+}
+.login-password-protected #login {
+    padding-top: 10.5%;
+}
+.login-password-protected h1 a {
+    margin-bottom: 65px;
+    width: 284px;
+    height: 83px;
+    background: url(img/common/password_logo.png) no-repeat center / 284px auto;
+}
+.login #backtoblog a, .login #nav a {
+    color: #fff;
+}
