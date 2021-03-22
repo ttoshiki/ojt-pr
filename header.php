@@ -33,7 +33,7 @@
 <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet" type="text/css">
 <?php wp_head(); ?>
 </head>
-<body <?php if(is_home() || is_front_page()) {?>class="top"<?php }else{ ?>class="seminar"<?php } ?>>
+<body <?php if(is_home() || is_front_page()) {?>class="top"<?php } elseif(is_page('login')){?> class="login"<?php } else{ ?>class="seminar"<?php } ?>>
 <div id="container">
 <?php if(is_home() || is_front_page()) {?>
 	<header class="headerBox">
@@ -51,7 +51,7 @@
 			</ul>
 		</div>
 	</header>
-<?php }else{ ?>
+<?php }elseif(!is_page('login')){ ?>
 	<header id="gHeader">
 		<div class="hBox">
 			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>

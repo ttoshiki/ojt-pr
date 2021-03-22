@@ -2,6 +2,10 @@
 function remove_wp_open_sans() {
 	wp_deregister_style( 'open-sans' );
 	wp_register_style( 'open-sans', false );
+
+    if(is_page('login')) {
+        wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
+    }
 }
 add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
 add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
@@ -178,14 +182,9 @@ function disable_visual_editor_filter(){
 add_action( 'load-post.php', 'disable_visual_editor_in_page' );
 add_action( 'load-post-new.php', 'disable_visual_editor_in_page' );
 
-function mytheme_enqueue_login_style() {
-    wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
-}
-add_action( 'login_enqueue_scripts', 'mytheme_enqueue_login_style' );
-
-/* 
+/*
    Debug preview with custom fields
-*/ 
+*/
 
 function get_preview_id($postId) {
     global $post;
