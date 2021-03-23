@@ -1,5 +1,25 @@
 <?php get_header(); ?>
-        <div class="content">
+    <div class="content">
+			<div id="modal" class="calendar__modal">
+        <div class="calendar__modalContent">
+          <div class="calendar__modalBody">
+            <h2 class="calendar__modalTitle" id="eventTitle">タイトル</h2>
+						<div>
+							<time id="eventDay">時間</time>
+							<time id="eventStartTime">-:--</time>
+							<span>~</span>
+							<time id="eventEndTime">-:--</time>
+						</div>
+						<p class="calendar__detail"></p>
+						<a href="#"></a>
+						<div type="button" id="closeBtn">
+							<span></span>
+							<span></span>
+						</div>
+          </div>
+        </div>
+      </div>
+			<div id="calendar"></div>
 			<div class="topBox comBox">
 				<p class="minTxt">ようこそ、OJT式PR塾へ！！ <br>PR塾を信じて、入塾頂いたこと、本当に嬉しく思います。<br>では、OJT式PR塾の進め方についてご案内です。<br>まずはこちらの動画をご覧ください。</p>
 				<div class="movie">

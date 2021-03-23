@@ -3,6 +3,14 @@ function remove_wp_open_sans() {
 	wp_deregister_style( 'open-sans' );
 	wp_register_style( 'open-sans', false );
 
+    if(is_front_page()) {
+        wp_enqueue_style('fullcalendar-style', get_template_directory_uri() . '/css/lib/fullcalendar/main.min.css', array(), '');
+        wp_style_add_data('fullcalendar-style', 'rtl', 'replace');
+        wp_enqueue_script('fullcalendar-script', get_template_directory_uri() . '/js/lib/fullcalendar/main.min.js', array(), '', true);
+        wp_enqueue_script('calendar-script', get_template_directory_uri() . '/js/calendar.js', array(), '', true);
+        wp_enqueue_script('date-fns-script', 'https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.28.5/date_fns.min.js', array(), '', false);
+    }
+
     if(is_page('login')) {
         wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
     }
