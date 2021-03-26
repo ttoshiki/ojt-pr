@@ -851,7 +851,7 @@ a.nolink:hover {
 	margin-top: -51px;
 }
 .top .topBox {
-	margin-bottom: 97px;
+	margin: 100px auto 97px;
 }
 .top .topBox .minTxt {
 	margin-bottom: 69px;
@@ -1475,9 +1475,120 @@ a.nolink:hover {
 	vertical-align: middle;
 }
 
-/* -----
- モーダル
------- */
+/* ---------
+トップニュース
+---------- */
+.topHeading {
+	font-size: 2.8rem;
+	color: #062263;
+	font-weight: 600;
+	text-align: center;
+	letter-spacing: 4.5px;
+}
+
+.home__news {
+	margin-bottom: 100px;
+}
+
+.home__newsList {
+	margin: 40px auto 0;
+	max-width: 1000px;
+	width: 90%;
+	font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+.home__newsItem {
+	padding-bottom: 12px;
+	padding-left: 12px;
+	margin-bottom: 16px;
+	border-bottom: 1px solid rgba(6, 34, 99, 0.2);
+}
+
+.home__newsTitle {
+	margin-left: 32px;
+	font-weight: 400;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.home__newsTitle a {
+	color: #231815;
+}
+
+.home__newsLink {
+	text-align: center;
+	margin-top: 40px;
+}
+
+a.home__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 80px;
+	margin: 24px auto 0;
+	width: 160px;
+	height: 48px;
+	font-size: 1.8rem;
+	background-color: #062263;
+	color: #fff;
+	position: relative;
+	box-shadow: 1px 4px 4px #ccc;
+}
+
+a.home__btn:hover {
+	cursor: pointer;
+}
+
+a.home__btn::after {
+	background-image: url(img/common/icon03.png);
+	width: 12px;
+	height: 14px;
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+	right: 25px;
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: 12px auto;
+	content: "";
+}
+
+.archive__article {
+	display: flex;
+}
+
+/* ---------
+カレンダー
+---------- */
+#calendar {
+	width: 80%;
+	margin: 40px auto 0;
+}
+
+#calendar.fc .fc-button-primary {
+	background-color: #062263;
+}
+
+.calendar__modalTitle {
+	font-size: 24px;
+	color: #062263;
+}
+
+.calendar__dayTime {
+	font-size: 16px;
+	margin-top: 8px;
+}
+
+.calendar__detail {
+	font-size: 15px;
+	margin-top: 24px;
+}
+
+.calendar__url {
+	font-size: 15px;
+	margin-top: 2px;
+}
 
 .calendar__modal {
 	position: fixed;

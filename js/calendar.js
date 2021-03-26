@@ -39,12 +39,31 @@ document.addEventListener('DOMContentLoaded', function() {
       let dayEl = document.getElementById('eventDay')
       let startTimeEl = document.getElementById('eventStartTime')
       let endTimeEl = document.getElementById('eventEndTime')
+
+      let detailEl = null
+      detailEl = document.getElementById('eventDetail')
+      detailEl.style.display = 'block'
+
+      let urlEl = null
+      urlEl = document.getElementById('eventUrl')
+      urlEl.style.display = 'block'
+
       modal.style.display = 'block'
       titleEl.textContent = event.title
-      console.log(eventDayTimeRange.start)
       dayEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "YYYY/MM/DD")
       startTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "HH:mm")
       endTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.end, 9), "HH:mm")
+      if(event.extendedProps.description) {
+        detailEl.textContent = event.extendedProps.description
+      } else {
+        detailEl.style.display = 'none'
+      }
+      if(event.extendedProps.location) {
+        urlEl.textContent = event.extendedProps.location
+        urlEl.href = event.extendedProps.location
+      } else {
+        urlEl.style.display = 'none'
+      }
       arg.jsEvent.preventDefault() // don't navigate in main tab
     },
 
@@ -59,21 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
   calendar.render()
 });
 
-// Make sure the client is loaded and sign-in is complete before calling this method.
-function execute() {
-  const roomName = document.getElementById('room-name').value
-  const startDate = document.getElementById('start-date').value.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '')
-  const startTime = document.getElementById('start-time').value
-  const startDateTime = startDate + 'T' + startTime + ':10+09:00'
-  const endDate = document.getElementById('end-date').value.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, '')
-  const endTime = document.getElementById('end-time').value
-  const endDateTime = endDate + 'T' + endTime + ':10+09:00'
-
-  jQuery('.reserve__modalErrorMessage').hide()
-
-}
-
-modal
 window.onload = function() {
   const closeButton = document.getElementById('closeBtn');
 
