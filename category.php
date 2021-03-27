@@ -19,7 +19,21 @@ $catID = $cat->term_id;
 						<?php while (have_posts()) : the_post(); ?>
 							<li>
 								<a href="<?php the_permalink();?>">
-									<h2 class="headline03"><?php the_title(); ?></h2>
+									<div class="category-title-block">
+									<?php
+										if (!is_category('news')){
+											$today = new DateTime();
+											$post_day = new DateTime(get_the_date('Y-m-d'));
+											$display_new_mark_days = 7;
+											$after_posting_days = $post_day->diff($today)->days;
+											if ($display_new_mark_days >= $after_posting_days) {
+									?>
+										<span class="new_mark">NEW</span>
+											<?php }
+										}
+									?>
+										<h2 class="post-headline"><?php the_title(); ?></h2>
+									</div>
 									<div class="imgBox">
 										<div class="photo" style="background-image: url(<?php if (has_post_thumbnail()) {
 											echo get_the_post_thumbnail_url($post->ID, 'full');
@@ -44,7 +58,7 @@ $catID = $cat->term_id;
 					</article>
 					<aside id="sideBar">
 						<ul class="sideUl">
-							<?php 
+							<?php
 								$args = array(
 									'hide_empty'=> false,
 									'parent'=> 1

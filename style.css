@@ -1646,3 +1646,32 @@ a.home__btn::after {
 #closeBtn span:nth-child(2) {
 	transform: rotate(-45deg);
 }
+
+/* ---------
+MEW マーク
+---------- */
+.category-title-block {
+	display: flex;
+	align-items: center;
+	margin-bottom: 28px;
+}
+
+.post-headline {
+	color: #917C2E;
+	font-size: 2.4rem;
+	letter-spacing: 3.5px;
+}
+
+.new_mark {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 28px;
+	min-height: 28px;
+	margin-right: 4px;
+	font-size: 10px;
+	color: #fff;
+	background-color: #b50007;
+	border-radius: 50%;
+	line-height: 1;
+}
