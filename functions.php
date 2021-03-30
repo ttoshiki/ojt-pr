@@ -311,3 +311,22 @@ add_action('after_setup_theme', function () {
         my_user_signup();
     }
 });
+
+$users = get_users();
+// var_dump($users);
+ if (function_exists('date_default_timezone_set')) {
+     date_default_timezone_set('Asia/Tokyo');
+ }
+foreach ($users as $user) {
+    // if($user->user_nicename === 'test') {
+    //     $user->remove_role('contributor');
+    //     $user->add_role('subscriber');
+    // }
+    echo $user->user_nicename ."\n";
+    $datetime = new DateTime($user->user_registered);
+    $datetime_jp = $datetime->modify('+9 hours');
+    echo $datetime->format('Y-m-d H:m:s') ."\n";
+    echo $user->roles[0] ."\n";
+    echo "\n";
+
+}
