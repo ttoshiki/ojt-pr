@@ -1,5 +1,5 @@
 	</main>
-	<?php if(!is_page('login')): ?>
+	<?php if(!is_page('entry') && !is_page('login') && !is_page('complete'))  : ?>
 	<footer id="gFooter">
 		<ul class="fixBtnUl">
 			<li><a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8"><img src="<?php bloginfo('template_url');?>/img/common/icon01.png" alt="動画教材一覧" width="55"></a></li>

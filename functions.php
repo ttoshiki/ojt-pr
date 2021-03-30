@@ -236,3 +236,78 @@ add_action('wp_insert_post', function ($postId) {
         do_action('save_preview_postmeta', $postId);
     }
 });
+
+/**
+ * 会員登録の処理をまとめた関数
+ */
+function my_user_signup()
+{
+    $user_name  = isset($_POST['user_name']) ? sanitize_text_field($_POST['user_name']) : '';
+    $user_pass  = isset($_POST['user_pass']) ? sanitize_text_field($_POST['user_pass']) : '';
+    $user_email = isset($_POST['user_email']) ? sanitize_text_field($_POST['user_email']) : '';
+
+    //空じゃないかチェック
+    if (empty($user_name) || empty($user_pass) || empty($user_email)) {
+        echo '情報が不足しています。';
+        exit;
+    }
+
+    //すでにユーザー名が使われていないかチェック
+    $user_id = username_exists($user_name);
+    if ($user_id !== false) {
+        echo 'すでにユーザー名「'. $user_name .'」は登録されています';
+        exit;
+    }
+
+    //すでにメールアドレスが使われていないかチェック
+    $user_id = email_exists($user_email);
+    if ($user_id !== false) {
+        echo 'すでにメールアドレス「'. $user_email .'」は登録されています';
+        exit;
+    }
+
+    //問題がなければユーザーを登録する処理を開始
+    $userdata = array(
+        'user_login' => $user_name,       //  ログイン名
+        'user_pass'  => $user_pass,       //  パスワード
+        'user_email' => $user_email,      //  メールアドレス
+    );
+    $user_id = wp_insert_user($userdata);
+
+    // ユーザーの作成に失敗した場合
+    if (is_wp_error($user_id)) {
+        echo $user_id -> get_error_code(); // WP_Error() の第一引数
+        echo $user_id -> get_error_message(); // WP_Error() の第二引数
+        exit;
+    }
+
+    //登録完了後、そのままログインさせる（ 任意 ）
+    wp_set_auth_cookie($user_id, false, is_ssl());
+
+    //登録完了ページへ
+    wp_redirect('/complete');
+    exit;
+
+    return;
+}
+
+/**
+ * after_setup_theme に処理をフック
+ */
+add_action('after_setup_theme', function () {
+
+    //会員登録フォームからの送信があるかどうか
+    if (isset($_POST['my_submit']) && $_POST['my_submit'] === 'signup') {
+
+        // nonceチェック
+        if (!isset($_POST['my_nonce_name'])) {
+            return;
+        }
+        if (!wp_verify_nonce($_POST['my_nonce_name'], 'my_nonce_action')) {
+            return;
+        }
+
+        // 登録処理を実行
+        my_user_signup();
+    }
+});

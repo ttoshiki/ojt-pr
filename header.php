@@ -34,7 +34,7 @@
 <?php wp_head(); ?>
 </head>
 <body <?php if(is_home() || is_front_page()) {?>class="top"<?php } elseif(is_page('login')){?> class="login"<?php } else{ ?>class="seminar"<?php } ?>>
-<div id="container">
+<div id="container" <?php if(is_page('entry')) { echo 'class="entry"'; } ?>>
 <?php if(is_home() || is_front_page()) {?>
 	<header class="headerBox">
 		<div class="innerBox">
@@ -51,7 +51,7 @@
 			</ul>
 		</div>
 	</header>
-<?php }elseif(!is_page('login')){ ?>
+<?php } elseif(!is_page('entry') && !is_page('login') && !is_page('complete')) { ?>
 	<header id="gHeader">
 		<div class="hBox">
 			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>
@@ -60,7 +60,9 @@
 				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="45">PR塾専用slack</a></li>
 			</ul>
 		</div>
-		<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
+		<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
+			<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
+		<?php endif; ?>
 	</header>
 	<div class="menuBox">
 		<div class="close"><img src="<?php bloginfo('template_url');?>/img/common/close.png" alt="close" width="32"></div>

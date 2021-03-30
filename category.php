@@ -59,24 +59,34 @@ $catID = $cat->term_id;
 					<aside id="sideBar">
 						<ul class="sideUl">
 							<?php
-								$args = array(
-									'hide_empty'=> false,
-									'parent'=> 1
-								);
+								if (current_user_can('contributor') || current_user_can('administrator')) {
+									$args = array(
+										'hide_empty'=> false,
+										// 'parent'=> 1
+										'parent'=> 3 // テスト環境
+									);
+								} elseif (current_user_can('subscriber')) {
+									$args = array(
+										'hide_empty'=> false,
+										// 'parent'=> 1
+										'parent'=> 3, // テスト環境
+										// 'exclude' => array( 12, 15 ) // 生講義の過去動画・最新追加動画
+										'exclude' => array( 10, 16 ) // テスト環境 生講義の過去動画・最新追加動画
+									);
+								}
 								$allterms = get_categories($args);
 								$count = count($allterms);
-								if($count > 0){
+								if($count > 0) {
 									foreach ($allterms as $allterm) {
 										$alltermlink=get_category_link($allterm->term_id);
 										$alltermname=$allterm->name;
 										if ($alltermname != 'その他'){
-										?>
-							<li <?php if($catID == $allterm->term_id){?>class="on"<?php } ?>><a href="<?php echo $alltermlink ?>"><span><?php $text = get_field('ff_text','category_'.$allterm->term_id); if($text){echo $text;}else{echo $alltermname;}; ?></span></a></li>
-										<?php }
+									?>
+								<li <?php if($catID == $allterm->term_id){?>class="on"<?php } ?>><a href="<?php echo $alltermlink ?>"><span><?php $text = get_field('ff_text','category_'.$allterm->term_id); if($text){echo $text;}else{echo $alltermname;}; ?></span></a></li>
+											<?php }
+										}
 									}
-								}
-							?>
-
+								?>
 						</ul>
 					</aside>
 				</div>

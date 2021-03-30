@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //     bool ? 'block' : 'none';
     // }
   });
-  if(isMobile) {
-    calendar.changeView('timeGridDay');
-  }
+  // if(isMobile) {
+  //   calendar.changeView('timeGridDay');
+  // }
   calendar.render()
 });
 
