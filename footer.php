@@ -7,7 +7,23 @@
 		</ul>
 		<div class="fLogo"><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾"></a></div>
 		<div class="pagetop"><a href="#container"><img src="<?php bloginfo('template_url');?>/img/common/pagetop.png" alt="pagetop" width="53"></a></div>
-		<p class="link"><a href="https://ojt-pr.com/privacy-policy/" target="_blank">プライバシーポリシー</a></p>
+		<ul class="footer-linksList">
+			<li class="footer-linksItem">
+				<a href="https://ojt-pr.com/privacy-policy/" target="_blank">利用規約</a>
+			</li>
+			<li class="footer-linksItem">
+				<a href="https://lita-pr.com/about-lita/" target="_blank">運営会社</a>
+			</li>
+			<li class="footer-linksItem">
+				<a href="https://ojt-pr.com/privacy-policy/" target="_blank">プライバシーポリシー</a>
+			</li>
+			<li class="footer-linksItem">
+				<a href="https://pr-professional.jp/transaction/" target="_blank">特定商取引法に基づく表記</a>
+			</li>
+			<li class="footer-linksItem">
+				<a href="mailto:jimukyoku@lita-pr.com" target="_blank">お問い合わせ</a>
+			</li>
+		</ul>
 		<address class="copyright">&copy;Copyright<?php echo date('Y'); ?> OJT式PR塾.All Rights Reserved.</address>
 	</footer>
 	<?php endif; ?>

@@ -312,21 +312,32 @@ add_action('after_setup_theme', function () {
     }
 });
 
-$users = get_users();
-// var_dump($users);
- if (function_exists('date_default_timezone_set')) {
-     date_default_timezone_set('Asia/Tokyo');
- }
-foreach ($users as $user) {
-    // if($user->user_nicename === 'test') {
-    //     $user->remove_role('contributor');
-    //     $user->add_role('subscriber');
-    // }
-    echo $user->user_nicename ."\n";
-    $datetime = new DateTime($user->user_registered);
-    $datetime_jp = $datetime->modify('+9 hours');
-    echo $datetime->format('Y-m-d H:m:s') ."\n";
-    echo $user->roles[0] ."\n";
-    echo "\n";
-
+function update_user_authority() {
+    function datetime_diff_month(DateTime $d1, DateTime $d2, $absolute = false){
+        $diff_month = ($d2->format('Y')*12 + $d2->format('n')) - ($d1->format('Y')*12 + $d1->format('n'));
+        return $absolute ? abs($diff_month) : $diff_month;
+    }
+    $users = get_users();
+    $today = new DateTime();
+    $membership_period_month = 12;
+    foreach ($users as $user) {
+        echo $user->user_nicename ."<br />";
+        $registered_datetime = new DateTime($user->user_registered);
+        $datetime_jp = $registered_datetime->modify('+9 hours');
+        $since_registration_month = datetime_diff_month($registered_datetime, $today);
+        if ($since_registration_month >= $membership_period_month) {
+            $user->remove_role('contributor'); // 寄稿者
+            $user->add_role('subscriber'); // 購読者
+        }
+        echo $registered_datetime->format('Y-m-d H:m:s');
+        echo $user->roles[0] ."\n";
+        echo('month' . $since_registration_month . "<br />");
+    }
 }
+add_action ( 'update_user_authority_cron', 'update_user_authority' );
+
+// cron登録処理
+if ( !wp_next_scheduled( 'update_user_authority_cron' ) ) {  // 何度も同じcronが登録されないように
+    date_default_timezone_set('Asia/Tokyo');  // タイムゾーンの設定
+    wp_schedule_event( time(), 'daily', 'update_user_authority_cron' );
+  }
