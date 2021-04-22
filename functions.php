@@ -321,7 +321,6 @@ function update_user_authority() {
     $today = new DateTime();
     $membership_period_month = 12;
     foreach ($users as $user) {
-        echo $user->user_nicename ."<br />";
         $registered_datetime = new DateTime($user->user_registered);
         $datetime_jp = $registered_datetime->modify('+9 hours');
         $since_registration_month = datetime_diff_month($registered_datetime, $today);
@@ -329,9 +328,10 @@ function update_user_authority() {
             $user->remove_role('contributor'); // 寄稿者
             $user->add_role('subscriber'); // 購読者
         }
-        echo $registered_datetime->format('Y-m-d H:m:s');
-        echo $user->roles[0] ."\n";
-        echo('month' . $since_registration_month . "<br />");
+        // echo $user->user_nicename ."<br />";
+        // echo $registered_datetime->format('Y-m-d H:m:s');
+        // echo $user->roles[0] ."\n";
+        // echo('month' . $since_registration_month . "<br />");
     }
 }
 add_action ( 'update_user_authority_cron', 'update_user_authority' );

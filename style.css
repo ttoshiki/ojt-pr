@@ -74,7 +74,6 @@ body {
 	text-size-adjust: none;
 	-webkit-text-size-adjust: none;
 	background-color: #062263;
-	background-color: white;
 }
 body.fixed {
 	width: 100%;
@@ -1750,6 +1749,15 @@ MEW マーク
 	line-height: 1;
 }
 
+
+
+/* ---------
+ログインページ
+---------- */
+.login-wrapper .um-field-checkbox:not(.um-field) {
+	margin-bottom: 16px;
+}
+
 /* ---------
 Entry ページ
 ---------- */
@@ -1798,7 +1806,7 @@ Entry ページ
 	width: 100%;
 }
 
-.entry-form-wrapper .um-field-error {
+.entry-form-wrapper .um-field-area .um-field-error {
 	background-color: transparent;
 	color: #b50007;
 	padding: 0;
