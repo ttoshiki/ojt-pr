@@ -1,9 +1,9 @@
 'use strict'
 
 // google API
-const API_KEY = 'AIzaSyC97AEclCTslyM2V3YTVFaNrecngF3uH0w'
-const CALENDAR_ID = 'qs9fuv1lvl15snqecn0c58n0i4@group.calendar.google.com';
-const CLIENT_ID = '507396238793-88mtbp563rkjsnp3n9agckcjha136ifq.apps.googleusercontent.com'
+const API_KEY = 'AIzaSyCBjIrdvQ2toNlWzSJucw8XAbtxTZ9ozy8'
+const CALENDAR_ID = 'hi6bh5lssb6bf2ivm7rijje4vo@group.calendar.google.com';
+const CLIENT_ID = '699883132340-2fok136jd46cm3f31uq33gkvgiqs5nlf.apps.googleusercontent.com'
 let calendar = null
 let isMobile = false
 

@@ -175,20 +175,20 @@ function get_current_term(){
  * 固定ページではビジュアルエディタを利用できないようにする
  */
 
-function disable_visual_editor_in_page(){
+// function disable_visual_editor_in_page(){
 
-  global $typenow;
-  if( $typenow == 'page' ){
-    add_filter('user_can_richedit', 'disable_visual_editor_filter');
-  }
+//   global $typenow;
+//   if( $typenow == 'page' ){
+//     add_filter('user_can_richedit', 'disable_visual_editor_filter');
+//   }
 
-}
+// }
 
-function disable_visual_editor_filter(){
-  return false;
-}
-add_action( 'load-post.php', 'disable_visual_editor_in_page' );
-add_action( 'load-post-new.php', 'disable_visual_editor_in_page' );
+// function disable_visual_editor_filter(){
+//   return false;
+// }
+// add_action( 'load-post.php', 'disable_visual_editor_in_page' );
+// add_action( 'load-post-new.php', 'disable_visual_editor_in_page' );
 
 /*
    Debug preview with custom fields
