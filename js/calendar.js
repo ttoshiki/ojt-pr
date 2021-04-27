@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     eventColor: '#836c39',
 
     eventClick: function(arg) {
-      console.log(arg.event)
       let event = arg.event._def
       console.log(event)
       let eventDayTimeRange = arg.event._instance.range
@@ -46,13 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let urlEl = null
       urlEl = document.getElementById('eventUrl')
-      urlEl.style.display = 'block'
+      urlEl.style.display = 'inline-block'
 
       modal.style.display = 'block'
       titleEl.textContent = event.title
       dayEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "YYYY/MM/DD")
       startTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "HH:mm")
       endTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.end, 9), "HH:mm")
+      console.log(event.extendedProps.description)
       if(event.extendedProps.description) {
         detailEl.textContent = event.extendedProps.description
       } else {

@@ -9,13 +9,13 @@
 		<div class="pagetop"><a href="#container"><img src="<?php bloginfo('template_url');?>/img/common/pagetop.png" alt="pagetop" width="53"></a></div>
 		<ul class="footer-linksList">
 			<li class="footer-linksItem">
-				<a href="https://ojt-pr.com/privacy-policy/" target="_blank">利用規約</a>
+				<a href="<?php echo home_url('/terms/') ?>" target="_blank">利用規約</a>
 			</li>
 			<li class="footer-linksItem">
 				<a href="https://lita-pr.com/about-lita/" target="_blank">運営会社</a>
 			</li>
 			<li class="footer-linksItem">
-				<a href="https://ojt-pr.com/privacy-policy/" target="_blank">プライバシーポリシー</a>
+				<a href="<?php echo home_url('/privacy/') ?>" target="_blank">プライバシーポリシー</a>
 			</li>
 			<li class="footer-linksItem">
 				<a href="https://pr-professional.jp/transaction/" target="_blank">特定商取引法に基づく表記</a>
