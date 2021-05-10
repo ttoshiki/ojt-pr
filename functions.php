@@ -159,33 +159,14 @@ function get_current_term(){
     return get_term($id,$tax_slug);
 }
 
-/**
- * 固定ページではビジュアルエディタを利用できないようにする
- */
-
-function disable_visual_editor_in_page(){
-
-  global $typenow;
-  if( $typenow == 'page' ){
-    add_filter('user_can_richedit', 'disable_visual_editor_filter');
-  }
-
-}
-
-function disable_visual_editor_filter(){
-  return false;
-}
-add_action( 'load-post.php', 'disable_visual_editor_in_page' );
-add_action( 'load-post-new.php', 'disable_visual_editor_in_page' );
-
 function mytheme_enqueue_login_style() {
     wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
 }
 add_action( 'login_enqueue_scripts', 'mytheme_enqueue_login_style' );
 
-/* 
+/*
    Debug preview with custom fields
-*/ 
+*/
 
 function get_preview_id($postId) {
     global $post;
@@ -229,3 +210,14 @@ add_action('wp_insert_post', function ($postId) {
         do_action('save_preview_postmeta', $postId);
     }
 });
+
+function custom_pre_get_posts( $query ) {
+    if ( is_admin() )
+        return;
+
+    if ( $query->is_category() && $query->is_main_query() ) {
+         $query->set( 'posts_per_page', -1 );
+         return;
+    }
+}
+add_action('pre_get_posts', 'custom_pre_get_posts');
