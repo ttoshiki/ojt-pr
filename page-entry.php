@@ -6,7 +6,12 @@
   </h1>
   <!-- <p class="entry-lead">リード分が入ります。リード分が入ります。リード分が入ります。リード分が入ります。リード分が入ります。</p> -->
   <div class="entry-form-wrapper">
-    <?php echo do_shortcode('[ultimatemember form_id="6"]'); ?>
+    <?php
+      if(have_posts()): while(have_posts()): the_post();
+        the_content();
+
+      endwhile; endif;
+    ?>
   </div>
 </div>
 

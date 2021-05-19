@@ -63,15 +63,19 @@ $catID = $cat->term_id;
 									$args = array(
 										'hide_empty'=> false,
 										// 'parent'=> 1
-										'parent'=> 3 // テスト環境
+										'parent'=> 2 // テスト環境
+										// 'parent'=> 3 // ローカル環境
 									);
 								} elseif (current_user_can('subscriber')) {
 									$args = array(
 										'hide_empty'=> false,
-										// 'parent'=> 1
-										'parent'=> 3, // テスト環境
-										// 'exclude' => array( 12, 15 ) // 生講義の過去動画・最新追加動画
-										'exclude' => array( 10, 16 ) // テスト環境 生講義の過去動画・最新追加動画
+										// 'parent'=> 1 本番環境
+										'parent'=> 2, // テスト環境
+										// 'parent'=> 3, // ローカル環境
+
+										// 'exclude' => array( 12, 15 ) // 本番環境 生講義の過去動画・最新追加動画
+										'exclude' => array( 13, 14 ) // テスト環境 生講義の過去動画・最新追加動画
+										// 'exclude' => array( 10, 16 ) // ローカル環境 生講義の過去動画・最新追加動画
 									);
 								}
 								$allterms = get_categories($args);
