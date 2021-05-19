@@ -81,17 +81,12 @@
 							<div class="btn"><a href="<?php bloginfo('template_url');?>/img/index/slack.pdf" target="_blank"><span><span class="size">PR塾専用slack</span><br><strong>Slack</strong>の登録方法・活用方法ははこちらから</span></a></div>
 						</li>
 						<li>
-							<h3>2.講義に参加する</h3>
-							<p>OJT式PR塾では、毎週木曜日に講義が開催されます。一部、変則の日がございますので、必ずご確認ください。</p>
-							<div class="btn btn02 btn03"><a href="https://ojt-pr.com/schedule/" target="_blank"><span>OJT式PR塾スケジュール</span></a></div>
-						</li>
-						<li>
-							<h3>3.笹木郁乃との個別コンサル</h3>
+							<h3>2.笹木郁乃との個別コンサル</h3>
 							<p>OJT式PR塾のメンバーの皆さんへは、結果を出すための笹木郁乃 個人コンサルを30分間(１回のみ)<br class="pc">提供しております。期間中、ご自身の好きなタイミングでお申し込みいただけます。<br>下記のフォームから日程を選択して頂き、ご予約確保をお願いします。</p>
 							<div class="btn btn02 btn04"><a href="https://tebanasu.net/lita-pr/consulting_sasaki" target="_blank"><span>【OJT式PR塾】笹木郁乃個別コンサル</span></a></div>
 						</li>
 						<li>
-							<h3>4.認定試験について</h3>
+							<h3>3.認定試験について</h3>
 							<div class="imgBox">
 								<div class="textBox">
 									<p>定期的に、PRプロデューサー資格試験を行います。1回合格されますと、<br class="pc">PRプロデューサーの資格証の発行を行います。</p>
@@ -117,14 +112,14 @@
 							</div>
 						</li>
 						<li>
-							<h3>5.お仕事斡旋について</h3>
+							<h3>4.お仕事斡旋について</h3>
 							<p>お仕事斡旋の情報につきましては、slackにてご案内いたします。所定の応募内容をご確認の上、ご応募ください。<br>お仕事斡旋のルールにつきましては、slackをご確認ください。</p>
 							<div class="movieBox">
 								<iframe src="https://player.vimeo.com/video/522704070" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 							</div>
 						</li>
 						<li>
-							<h3>6.お問い合わせ先について</h3>
+							<h3>5.お問い合わせ先について</h3>
 							<p>講義について、その他何かご不明な点などございます場合は、サポートスタッフの古川が皆様のご相談にお答えします。お気軽にご連絡ください。</p>
 							<p class="mailTxt"><a href="m&#97;i&#108;t&#111;:&#106;&#105;m&#117;k&#121;&#111;&#107;&#117;@&#108;&#105;ta&#45;&#112;&#114;&#46;&#99;&#111;&#109;">&#106;&#105;m&#117;k&#121;&#111;&#107;&#117;@&#108;&#105;ta&#45;&#112;&#114;&#46;&#99;&#111;&#109;</a></p>
 						</li>
