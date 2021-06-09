@@ -52,7 +52,7 @@
 					<span>ログアウト</span>
 				</div>
 			</a>
-			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>
+			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="460"></a></h1>
 			<h2>
 				<picture>
 				  <source media="(max-width: 896px)" srcset="<?php bloginfo('template_url');?>/img/index/sp_h2_img.png">
