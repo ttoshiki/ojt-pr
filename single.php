@@ -38,10 +38,11 @@ $catID = $cat->term_id;
 						</article>
 						<aside id="sideBar">
 							<ul class="sideUl">
-								<?php 
+								<?php
 									$args = array(
 										'hide_empty'=> false,
-										'parent'=> 1
+										// 'parent'=> 1
+										'parent'=> 2 // テスト環境
 									);
 									$allterms = get_categories($args);
 									$count = count($allterms);

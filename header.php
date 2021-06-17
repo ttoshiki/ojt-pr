@@ -10,35 +10,49 @@
 <meta property="og:image" content="<?php bloginfo('template_url');?>/ogp.jpg">
 <link rel="icon" type="image/gif" href="<?php bloginfo('template_url');?>/favicon.ico">
 <title><?php
-	/*
-	 * Print the <title> tag based on what is being viewed.
-	 */
-	global $page, $paged;
+    /*
+     * Print the <title> tag based on what is being viewed.
+     */
+    global $page, $paged;
 
-	wp_title( '|', true, 'right' );
+    wp_title('|', true, 'right');
 
-	// Add the blog name.
-	bloginfo( 'name' );
+    // Add the blog name.
+    bloginfo('name');
 
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
+    // Add the blog description for the home/front page.
+    $site_description = get_bloginfo('description', 'display');
+    if ($site_description && (is_home() || is_front_page())) {
+        echo " | $site_description";
+    }
 
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', '' ), max( $paged, $page ) );
+    // Add a page number if necessary:
+    if ($paged >= 2 || $page >= 2) {
+        echo ' | ' . sprintf(__('Page %s', ''), max($paged, $page));
+    }
 
-	?></title>
+    ?></title>
 <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet" type="text/css">
 <?php wp_head(); ?>
 </head>
-<body <?php if(is_home() || is_front_page()) {?>class="top"<?php }else{ ?>class="seminar"<?php } ?>>
-<div id="container">
-<?php if(is_home() || is_front_page()) {?>
+<body <?php if (is_home() || is_front_page()) {?>class="top"<?php } elseif (is_page('login')) {?> class="login"<?php } else { ?>class="seminar"<?php } ?>>
+<div id="container" <?php if (is_page('entry')) {
+        echo 'class="entry"';
+    } ?>>
+<?php if (is_home() || is_front_page()) {?>
 	<header class="headerBox">
 		<div class="innerBox">
-			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>
+			<a href="<?php echo home_url('/logout/'); ?>" class="logoutBtn">
+				<div class="logoutBtnWrapper">
+					<div class="logoutBtnIcon">
+						<svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M1 1L8 1V2L2 2L2 13H8V14H1L1 1ZM10.8536 4.14645L14.1932 7.48614L10.8674 11.0891L10.1326 10.4109L12.358 8L4 8V7L12.2929 7L10.1464 4.85355L10.8536 4.14645Z" fill="white"/>
+						</svg>
+					</div>
+					<span>ログアウト</span>
+				</div>
+			</a>
+			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="460"></a></h1>
 			<h2>
 				<picture>
 				  <source media="(max-width: 896px)" srcset="<?php bloginfo('template_url');?>/img/index/sp_h2_img.png">
@@ -51,8 +65,18 @@
 			</ul>
 		</div>
 	</header>
-<?php }else{ ?>
+<?php } elseif (!is_page('entry') && !is_page('login') && !is_page('complete')) { ?>
 	<header id="gHeader">
+		<a href="<?php echo home_url('/logout/'); ?>" class="logoutBtn">
+			<div class="logoutBtnWrapper -lower_page">
+				<div class="logoutBtnIcon">
+					<svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M1 1L8 1V2L2 2L2 13H8V14H1L1 1ZM10.8536 4.14645L14.1932 7.48614L10.8674 11.0891L10.1326 10.4109L12.358 8L4 8V7L12.2929 7L10.1464 4.85355L10.8536 4.14645Z" fill="white"/>
+					</svg>
+				</div>
+				<span>ログアウト</span>
+			</div>
+		</a>
 		<div class="hBox">
 			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>
 			<ul class="comBtnUl pc">
@@ -60,7 +84,9 @@
 				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="45">PR塾専用slack</a></li>
 			</ul>
 		</div>
-		<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
+		<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
+			<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
+		<?php endif; ?>
 	</header>
 	<div class="menuBox">
 		<div class="close"><img src="<?php bloginfo('template_url');?>/img/common/close.png" alt="close" width="32"></div>
@@ -68,25 +94,27 @@
 			<ul class="naviUl">
 				<li><a href="<?php bloginfo('url');?>">トップページ</a></li>
 				<?php
-					$args = array(
-						'hide_empty'=> false,
-						'parent'=> 1
-					);
-					$allterms = get_categories($args);
-					$count = count($allterms);
-					if($count > 0){
-						foreach ($allterms as $allterm) {
-							$alltermlink=get_category_link($allterm->term_id);
-							$alltermname=$allterm->name;
-							if ($alltermname != 'その他'){
-							?>
+                    $args = array(
+                        'hide_empty'=> false,
+                        'parent'=> 1
+                    );
+                    $allterms = get_categories($args);
+                    $count = count($allterms);
+                    if ($count > 0) {
+                        foreach ($allterms as $allterm) {
+                            $alltermlink=get_category_link($allterm->term_id);
+                            $alltermname=$allterm->name;
+                            if ($alltermname != 'その他') {
+                                ?>
 								<li><a href="<?php echo $alltermlink ?>"><?php echo $alltermname; ?></a></li>
-							<?php }
-						}
-					}
-				?>
+							<?php
+                            }
+                        }
+                    }
+                ?>
 				<li><a href="<?php bloginfo('url');?>/schedule">OJT式PR塾スケジュール</a></li>
 				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="30">PR塾専用slack</a></li>
+				<li><a href="<?php echo home_url('/logout/'); ?>">ログアウト</a></li>
 			</ul>
 		</div>
 	</div>

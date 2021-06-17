@@ -1,23 +1,25 @@
 @charset "utf-8";
-.login {
-    background: #1D2D66;
+html,body {
+    height: 100%;
 }
-#login {
-    padding-top: 13%;
+.login {
+    background: url(img/common/login_bg.png) no-repeat center / cover
 }
 .login h1 a {
     margin-bottom: 100px;
     width: 270px;
     height: 40px;
-    background: url(img/common/logo.png) no-repeat center / 270px auto;
-}
-.login-password-protected {
-    background: url(img/common/login_bg.png) no-repeat center / cover;
-}
-.login-password-protected #login {
-    padding-top: 10.5%;
-}
-.login-password-protected h1 a {
+    color: #3c434a;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0 auto 25px;
+    padding: 0;
+    text-decoration: none;
+    text-indent: -9999px;
+    outline: 0;
+    overflow: hidden;
+    display: block;
     margin-bottom: 65px;
     width: 284px;
     height: 83px;
@@ -25,4 +27,54 @@
 }
 .login #backtoblog a, .login #nav a {
     color: #fff;
+}
+
+.login-wrapper {
+    padding: 10% 16px 0;
+}
+
+.login-wrapper .um .um-form input[type=text] {
+    color: #121212 !important;
+}
+
+.um .um-form input:-webkit-autofill {
+    -webkit-text-fill-color: #121212 !important;
+}
+
+.um-right,
+.um-col-alt-b {
+    display: none;
+}
+
+.login-wrapper .um-left {
+    margin-top: 12px;
+    float: none;
+}
+
+.login-wrapper .um input[type=submit].um-button {
+  background-image: -moz-linear-gradient( 118deg, rgb(201,182,112) 0%, rgb(240,236,207) 100%);
+  background-image: -webkit-linear-gradient( 118deg, rgb(201,182,112) 0%, rgb(240,236,207) 100%);
+  background-image: -ms-linear-gradient( 118deg, rgb(201,182,112) 0%, rgb(240,236,207) 100%);
+  color: #121212;
+  font-weight: 600 !important;
+}
+
+.um-col-alt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.um-field-checkbox-option {
+    color: #fff;
+}
+
+.login-wrapper .um-field-checkbox-state i,
+.login-wrapper .um-field-radio-state i,
+.login-wrapper .um-icon-android-checkbox-outline::before {
+    color: #fff;
+}
+
+.login-wrapper .um-field-checkbox-option {
+    color: #fff !important;
 }

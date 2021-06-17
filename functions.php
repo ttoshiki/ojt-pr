@@ -2,6 +2,18 @@
 function remove_wp_open_sans() {
 	wp_deregister_style( 'open-sans' );
 	wp_register_style( 'open-sans', false );
+
+    if(is_front_page()) {
+        wp_enqueue_style('fullcalendar-style', get_template_directory_uri() . '/css/lib/fullcalendar/main.min.css', array(), '');
+        wp_style_add_data('fullcalendar-style', 'rtl', 'replace');
+        wp_enqueue_script('fullcalendar-script', get_template_directory_uri() . '/js/lib/fullcalendar/main.min.js', array(), '', true);
+        wp_enqueue_script('calendar-script', get_template_directory_uri() . '/js/calendar.js', array(), '', true);
+        wp_enqueue_script('date-fns-script', 'https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.28.5/date_fns.min.js', array(), '', false);
+    }
+
+    if(is_page('login')) {
+        wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
+    }
 }
 add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
 add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
@@ -159,11 +171,6 @@ function get_current_term(){
     return get_term($id,$tax_slug);
 }
 
-function mytheme_enqueue_login_style() {
-    wp_enqueue_style( 'mytheme-options-style', get_template_directory_uri() . '/login.css' );
-}
-add_action( 'login_enqueue_scripts', 'mytheme_enqueue_login_style' );
-
 /*
    Debug preview with custom fields
 */
@@ -211,13 +218,103 @@ add_action('wp_insert_post', function ($postId) {
     }
 });
 
-function custom_pre_get_posts( $query ) {
-    if ( is_admin() )
-        return;
+/**
+ * 会員登録の処理をまとめた関数
+ */
+function my_user_signup()
+{
+    $user_name  = isset($_POST['user_name']) ? sanitize_text_field($_POST['user_name']) : '';
+    $user_pass  = isset($_POST['user_pass']) ? sanitize_text_field($_POST['user_pass']) : '';
+    $user_email = isset($_POST['user_email']) ? sanitize_text_field($_POST['user_email']) : '';
 
-    if ( $query->is_category() && $query->is_main_query() ) {
-         $query->set( 'posts_per_page', -1 );
-         return;
+    //空じゃないかチェック
+    if (empty($user_name) || empty($user_pass) || empty($user_email)) {
+        echo '情報が不足しています。';
+        exit;
+    }
+
+    //すでにユーザー名が使われていないかチェック
+    $user_id = username_exists($user_name);
+    if ($user_id !== false) {
+        echo 'すでにユーザー名「'. $user_name .'」は登録されています';
+        exit;
+    }
+
+    //すでにメールアドレスが使われていないかチェック
+    $user_id = email_exists($user_email);
+    if ($user_id !== false) {
+        echo 'すでにメールアドレス「'. $user_email .'」は登録されています';
+        exit;
+    }
+
+    //問題がなければユーザーを登録する処理を開始
+    $userdata = array(
+        'user_login' => $user_name,       //  ログイン名
+        'user_pass'  => $user_pass,       //  パスワード
+        'user_email' => $user_email,      //  メールアドレス
+    );
+    $user_id = wp_insert_user($userdata);
+
+    // ユーザーの作成に失敗した場合
+    if (is_wp_error($user_id)) {
+        echo $user_id -> get_error_code(); // WP_Error() の第一引数
+        echo $user_id -> get_error_message(); // WP_Error() の第二引数
+        exit;
+    }
+
+    //登録完了後、そのままログインさせる（ 任意 ）
+    wp_set_auth_cookie($user_id, false, is_ssl());
+
+    //登録完了ページへ
+    wp_redirect('/complete');
+    exit;
+
+    return;
+}
+
+/**
+ * after_setup_theme に処理をフック
+ */
+add_action('after_setup_theme', function () {
+
+    //会員登録フォームからの送信があるかどうか
+    if (isset($_POST['my_submit']) && $_POST['my_submit'] === 'signup') {
+
+        // nonceチェック
+        if (!isset($_POST['my_nonce_name'])) {
+            return;
+        }
+        if (!wp_verify_nonce($_POST['my_nonce_name'], 'my_nonce_action')) {
+            return;
+        }
+
+        // 登録処理を実行
+        my_user_signup();
+    }
+});
+
+function update_user_authority() {
+    function datetime_diff_month(DateTime $d1, DateTime $d2, $absolute = false){
+        $diff_month = ($d2->format('Y')*12 + $d2->format('n')) - ($d1->format('Y')*12 + $d1->format('n'));
+        return $absolute ? abs($diff_month) : $diff_month;
+    }
+    $users = get_users();
+    $today = new DateTime();
+    $membership_period_month = 12;
+    foreach ($users as $user) {
+        $registered_datetime = new DateTime($user->user_registered);
+        $datetime_jp = $registered_datetime->modify('+9 hours');
+        $since_registration_month = datetime_diff_month($registered_datetime, $today);
+        if ($since_registration_month >= $membership_period_month) {
+            $user->remove_role('contributor'); // 寄稿者
+            $user->add_role('subscriber'); // 購読者
+        }
     }
 }
-add_action('pre_get_posts', 'custom_pre_get_posts');
+add_action ( 'update_user_authority_cron', 'update_user_authority' );
+
+// cron登録処理
+if ( !wp_next_scheduled( 'update_user_authority_cron' ) ) {  // 何度も同じcronが登録されないように
+    date_default_timezone_set('Asia/Tokyo');  // タイムゾーンの設定
+    wp_schedule_event( time(), 'daily', 'update_user_authority_cron' );
+  }

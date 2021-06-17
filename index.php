@@ -1,5 +1,59 @@
 <?php get_header(); ?>
-        <div class="content">
+    <div class="content">
+			<div id="modal" class="calendar__modal">
+        <div class="calendar__modalContent">
+          <div class="calendar__modalBody">
+            <h2 class="calendar__modalTitle" id="eventTitle">タイトル</h2>
+						<div class="calendar__dayTime">
+							<time id="eventDay">時間</time>
+							<time id="eventStartTime">-:--</time>
+							<span>~</span>
+							<time id="eventEndTime">-:--</time>
+						</div>
+						<p class="calendar__detail" id="eventDetail"></p>
+						<a href="#" class="calendar__url" id="eventUrl"></a>
+						<div type="button" id="closeBtn">
+							<span></span>
+							<span></span>
+						</div>
+          </div>
+        </div>
+      </div>
+			<section class="home__news">
+				<div class="home__newsInner">
+					<h2 class="topHeading">お知らせ</h2>
+					<ul class="home__newsList">
+						<?php
+							$args = array(
+								'post_type' => 'post',
+								'category_name' => 'news',
+								'posts_per_page' => 5,
+							 );
+							$the_query = new WP_Query($args); if($the_query->have_posts()):
+						?>
+						<?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+							<li class="home__newsItem">
+								<article id="post-<?php the_ID(); ?>" <?php post_class('archive__article'); ?>>
+									<time datetime="<?php echo get_the_date('Y-m-d'); ?>" class="home__newsDate"><?php echo get_post_time('Y.m.d'); ?></time>
+									<h3 class="home__newsTitle"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+								</article>
+							</li>
+						<?php endwhile; ?>
+						<?php else: ?>
+							<p>準備中です。</p>
+						<?php endif; ?>
+					</ul>
+				</div>
+				<div class="home__newsLink">
+					<a href="<?php echo home_url('/seminar/news/') ?>" class="home__btn">
+						お知らせ一覧
+					</a>
+				</div>
+			</section>
+			<section class="topCalendar">
+				<h2 class="topHeading">OJT式PR塾講座カレンダー</h2>
+				<div id="calendar"></div>
+			</section>
 			<div class="topBox comBox">
 				<p class="minTxt">ようこそ、OJT式PR塾へ！！ <br>PR塾を信じて、入塾頂いたこと、本当に嬉しく思います。<br>では、OJT式PR塾の進め方についてご案内です。<br>まずはこちらの動画をご覧ください。</p>
 				<div class="movie">
@@ -39,7 +93,6 @@
 									<ul class="indentUl">
 										<li>・合格されますと、一般社団法人PRプロフェッショナル協会認定　PRプロデューサーとしてご活動いただけます。</li>
 										<li>・試験についての詳細は1ヶ月前にご案内いたします。</li>
-										<li>・認定試験の開催月は2021年4月・6月・9月・11月、2022年1月・3月となっております。</li>
 									</ul>
 									<h4>認定試験の詳細</h4>
 									<dl>
