@@ -18,6 +18,16 @@ function remove_wp_open_sans() {
 add_action('wp_enqueue_scripts', 'remove_wp_open_sans');
 add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
 
+/**
+ * Enqueue scripts and styles.
+ */
+function ojt_pr_scripts()
+{
+    wp_enqueue_style('ojt-pr-style', get_stylesheet_uri(), array(), '1.0.1');
+    wp_style_add_data('ojt-pr-style', 'rtl', 'replace');
+}
+add_action('wp_enqueue_scripts', 'ojt_pr_scripts');
+
 //remove_filter (  'the_content' ,  'wpautop'  );
 //remove_filter (  'the_excerpt' ,  'wpautop'  );
 //remove_filter( 'comment_text', 'wpautop',  30 );
