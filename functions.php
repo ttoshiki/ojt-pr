@@ -309,10 +309,6 @@ function update_user_authority() {
             $user->remove_role('contributor'); // 寄稿者
             $user->add_role('subscriber'); // 購読者
         }
-        // echo $user->user_nicename ."<br />";
-        // echo $registered_datetime->format('Y-m-d H:m:s');
-        // echo $user->roles[0] ."\n";
-        // echo('month' . $since_registration_month . "<br />");
     }
 }
 add_action ( 'update_user_authority_cron', 'update_user_authority' );
