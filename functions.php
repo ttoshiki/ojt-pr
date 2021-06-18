@@ -7,7 +7,7 @@ function remove_wp_open_sans() {
         wp_enqueue_style('fullcalendar-style', get_template_directory_uri() . '/css/lib/fullcalendar/main.min.css', array(), '');
         wp_style_add_data('fullcalendar-style', 'rtl', 'replace');
         wp_enqueue_script('fullcalendar-script', get_template_directory_uri() . '/js/lib/fullcalendar/main.min.js', array(), '', true);
-        wp_enqueue_script('calendar-script', get_template_directory_uri() . '/js/calendar.js', array(), '', true);
+        wp_enqueue_script('calendar-script', get_template_directory_uri() . '/js/calendar.js', array(), '1.0.2', true);
         wp_enqueue_script('date-fns-script', 'https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.28.5/date_fns.min.js', array(), '', false);
     }
 
@@ -23,7 +23,7 @@ add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
  */
 function ojt_pr_scripts()
 {
-    wp_enqueue_style('ojt-pr-style', get_stylesheet_uri(), array(), '1.0.1');
+    wp_enqueue_style('ojt-pr-style', get_stylesheet_uri(), array(), '1.0.2');
     wp_style_add_data('ojt-pr-style', 'rtl', 'replace');
 }
 add_action('wp_enqueue_scripts', 'ojt_pr_scripts');
@@ -327,4 +327,16 @@ add_action ( 'update_user_authority_cron', 'update_user_authority' );
 if ( !wp_next_scheduled( 'update_user_authority_cron' ) ) {  // 何度も同じcronが登録されないように
     date_default_timezone_set('Asia/Tokyo');  // タイムゾーンの設定
     wp_schedule_event( time(), 'daily', 'update_user_authority_cron' );
-  }
+}
+
+// パスワード変更時のメール
+function custom_password_change_email( $pass_change_email ) {
+    $subject = '【' . get_option( 'blogname' ) . '】 パスワード変更';
+    $message = '###USERNAME### さんのパスワードが変更されました。' . "\n";
+    $message .= 'これはパスワード変更時に該当ユーザーのメールアドレス宛に送信されます。';
+
+    $pass_change_email['subject'] = $subject;
+    $pass_change_email['message'] = $message;
+    return $pass_change_email;
+}
+add_filter( 'password_change_email', 'custom_password_change_email' );

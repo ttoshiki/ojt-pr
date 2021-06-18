@@ -1716,6 +1716,8 @@ a.home__btn::after {
 .calendar__modalTitle {
 	font-size: 24px;
 	color: #062263;
+	font-feature-settings: "palt";
+	letter-spacing: 1px;
 }
 
 .calendar__dayTime {
@@ -1750,6 +1752,8 @@ a.home__btn::after {
 	top: 50%;
 	left: 50%;
 	width: 500px;
+	height: 60%;
+	overflow: scroll;
 	padding: 24px 32px;
 	margin: 0 auto;
 	background-color: white;
@@ -1757,10 +1761,15 @@ a.home__btn::after {
 	transform: translate(-50%, -50%);
 }
 
+.calendar__modalContent a {
+	text-decoration: underline;
+	color: #062263;
+}
+
 #closeBtn {
 	position: absolute;
-	top: -48px;
-	right: 0;
+	top: 12px;
+	right: 12px;
 	display: inline-block;
 	width: 40px;
 	height: 40px;
@@ -1779,7 +1788,7 @@ a.home__btn::after {
 	display: inline-block;
 	width: 40px;
 	height: 2px;
-	background-color: #fff;
+	background-color: #062263;
 }
 
 #closeBtn span:first-child {
@@ -1798,12 +1807,19 @@ a.home__btn::after {
 	}
 
 	.calendar__modalContent {
-		width: 70%;
-		padding: 5% 8%;
+		width: 86%;
+		height: auto;
+		max-height: 80%;
+		padding: 5% 0;
 	}
 
 	.calendar__modalTitle {
 		font-size: 20px;
+	}
+
+	.calendar__modalBody {
+		width: 90%;
+		margin: 24px auto 0;
 	}
 
 	.calendar__dayTime {
@@ -1822,6 +1838,16 @@ a.home__btn::after {
 
 	#calendar.fc .fc-toolbar-title {
 		font-size: 16px;
+	}
+
+	#closeBtn {
+		width: 24px;
+		height: 24px;
+	}
+
+	#closeBtn span {
+		width: 24px;
+		top: 12px;
 	}
 }
 

@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     eventClick: function(arg) {
       let event = arg.event._def
-      console.log(event)
       let eventDayTimeRange = arg.event._instance.range
       let titleEl = document.getElementById('eventTitle')
       let dayEl = document.getElementById('eventDay')
@@ -52,9 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
       dayEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "YYYY/MM/DD")
       startTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.start, 9), "HH:mm")
       endTimeEl.textContent = dateFns.format(dateFns.subHours(eventDayTimeRange.end, 9), "HH:mm")
-      console.log(event.extendedProps.description)
       if(event.extendedProps.description) {
-        detailEl.textContent = event.extendedProps.description
+        detailEl.innerHTML = event.extendedProps.description
       } else {
         detailEl.style.display = 'none'
       }
