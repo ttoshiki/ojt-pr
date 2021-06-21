@@ -5,8 +5,8 @@
      <span class="entry-header-small">事前登録フォーム</span>
   </h1>
   <p class="entry-lead">
-    この度、OJT式PR塾の会員サイトの一部リニューアル・バージョンアップをさせて頂きました。それに伴いサイトの情報保護の観点からも、今後は、アドレスやパスワードのログイン設定を行っていただく仕様と変更となりました。皆様にはお手数をおかけしてしまいますが、登録フォームの設定をお願いいたします。
-  </p>
+    OJT式PR塾専用動画サイトでございます。ご利用いただくために会員登録をお願いいたします。会員登録の方法は<a href="https://docs.google.com/document/d/16Slr6su-oacjox377ICxygFxnLlit8ZZtSbQry9tDo4/edit">OJT PR塾 事前登録手順</a>よりご確認くださいませ。ご登録頂き、承認のご連絡が届きましたらご利用可能となっております。今しばらくおまちください。
+  </p>
   <div class="entry-form-wrapper">
     <?php
       if(have_posts()): while(have_posts()): the_post();
