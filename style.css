@@ -1926,6 +1926,11 @@ Entry ページ
 	margin: 40px 0 0;
 }
 
+.entry-lead a {
+	color: #fff;
+	text-decoration: underline;
+}
+
 .entry-form-wrapper {
 	display: flex;
 	justify-content: center;

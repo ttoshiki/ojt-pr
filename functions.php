@@ -23,7 +23,7 @@ add_action('admin_enqueue_scripts', 'remove_wp_open_sans');
  */
 function ojt_pr_scripts()
 {
-    wp_enqueue_style('ojt-pr-style', get_stylesheet_uri(), array(), '1.0.2');
+    wp_enqueue_style('ojt-pr-style', get_stylesheet_uri(), array(), '1.0.3');
     wp_style_add_data('ojt-pr-style', 'rtl', 'replace');
 }
 add_action('wp_enqueue_scripts', 'ojt_pr_scripts');
