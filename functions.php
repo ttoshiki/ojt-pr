@@ -228,6 +228,7 @@ add_action('wp_insert_post', function ($postId) {
     }
 });
 
+// 会員の権限を変更する関数（wp_cronで実行）
 function update_user_authority() {
     function datetime_diff_month(DateTime $d1, DateTime $d2, $absolute = false){
         $diff_month = ($d2->format('Y')*12 + $d2->format('n')) - ($d1->format('Y')*12 + $d1->format('n'));
