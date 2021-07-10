@@ -14,6 +14,9 @@ $catID = $cat->term_id;
 				<div class="wrapper">
 					<article id="conts">
 					<?php
+						$user_data = get_userdata(get_current_user_id());
+						$registered = $user_data->user_registered;
+						var_dump($registered);
 						if (have_posts()):?>
 						<ul class="comList">
 						<?php while (have_posts()) : the_post(); ?>
@@ -96,4 +99,49 @@ $catID = $cat->term_id;
 				</div>
 			</section>
 		</div>
+
+<div style="background-color: #fff">
+		<?php
+	$taxonomy_name = 'category';
+	$term_id = get_queried_object_id();
+	$children = get_term_children( $term_id, $taxonomy_name );
+	$taxonomies = get_terms($taxonomy_name, array(
+		'parent' => $term_id
+	));
+	if(!is_wp_error($taxonomies) && count($taxonomies)):
+
+	foreach($taxonomies as $taxonomy):
+	$tax_posts = get_posts(array('post_type' => get_post_type(), 'taxonomy' => $taxonomy_name,
+	'term' => $taxonomy->slug ) );
+	foreach($tax_posts as $hoge){
+		var_dump($hoge->post_date);
+		// 投稿日が会員登録から12ヶ月後より前だったらフラグを1にする
+	}
+	if($tax_posts):
+?>
+
+<h2 style="font-size: 24px;"><?php echo esc_html($taxonomy->name); ?></h2>
+<ul>
+
+<?php
+foreach($tax_posts as $tax_post):
+?>
+<li>
+<a href="<?php echo get_permalink($tax_post->ID); ?>">
+<figure>
+<?php
+//画像 if(has_post_thumbnail($tax_post->ID)) { echo get_the_post_thumbnail($tax_post->ID,'post-thumbnail'); }
+?>
+</figure>
+
+<h3><?php echo get_the_title($tax_post->ID); ?></h3>
+</li>
+<?php endforeach; ?>
+
+</ul>
+<?php endif; endforeach; endif; ?>
+</div>
+
+
+
 <?php get_footer(); ?>
