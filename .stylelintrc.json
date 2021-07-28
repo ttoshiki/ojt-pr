@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "stylelint-config-recommended-scss",
+        "stylelint-config-recess-order",
+        "stylelint-prettier/recommended"
+    ],
+    "rules": {
+        "font-family-no-missing-generic-family-keyword": null,
+        "no-descending-specificity": null,
+        "block-no-empty": null,
+        "no-duplicate-selectors": null,
+        "font-family-no-duplicate-names": null
+    }
+}

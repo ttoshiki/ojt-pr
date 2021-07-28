@@ -1,4 +1,5 @@
-	</main>
+		</main>
+	</div>
 	<?php if(!is_page('entry') && !is_page('login') && !is_page('complete'))  : ?>
 	<footer id="gFooter">
 		<ul class="fixBtnUl">

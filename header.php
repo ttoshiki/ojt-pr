@@ -32,7 +32,6 @@
     }
 
     ?></title>
-<link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet" type="text/css">
 <?php wp_head(); ?>
 </head>
 <body <?php if (is_home() || is_front_page()) {?>class="top"<?php } elseif (is_page('login')) {?> class="login"<?php } else { ?>class="seminar"<?php } ?>>
@@ -66,57 +65,76 @@
 		</div>
 	</header>
 <?php } elseif (!is_page('entry') && !is_page('login') && !is_page('complete')) { ?>
-	<header id="gHeader">
-		<a href="<?php echo home_url('/logout/'); ?>" class="logoutBtn">
-			<div class="logoutBtnWrapper -lower_page">
-				<div class="logoutBtnIcon">
-					<svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M1 1L8 1V2L2 2L2 13H8V14H1L1 1ZM10.8536 4.14645L14.1932 7.48614L10.8674 11.0891L10.1326 10.4109L12.358 8L4 8V7L12.2929 7L10.1464 4.85355L10.8536 4.14645Z" fill="white"/>
-					</svg>
-				</div>
-				<span>ログアウト</span>
+	<div class="inner">
+		<header id="gHeader">
+			<?php if(is_home() || is_front_page()): ?>
+				<a href="<?php echo home_url('/logout/'); ?>" class="logoutBtn">
+					<div class="logoutBtnWrapper -lower_page">
+						<div class="logoutBtnIcon">
+							<svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M1 1L8 1V2L2 2L2 13H8V14H1L1 1ZM10.8536 4.14645L14.1932 7.48614L10.8674 11.0891L10.1326 10.4109L12.358 8L4 8V7L12.2929 7L10.1464 4.85355L10.8536 4.14645Z" fill="white"/>
+							</svg>
+						</div>
+						<span>ログアウト</span>
+					</div>
+				</a>
+			<?php endif; ?>
+			<nav class="headerMenu">
+				<h1><a href="<?php bloginfo('url');?>" class="headerMenu__logoLink">OJT式PR塾専用サイト</a></h1>
+				<ul class="headerMenu__list pc">
+					<li class="headerMenu__item">
+						<a href="<?php bloginfo('url');?>/seminar/pr_step">PRステップ完全攻略動画</a>
+					</li>
+					<li class="headerMenu__item">
+						<a href="<?php bloginfo('url');?>/seminar/newcontents">笹木郁乃 最新追加動画</a>
+					</li>
+					<li class="headerMenu__item">
+						<a href="<?php bloginfo('url');?>/seminar/media_exchange_metting">メディア交流会録画動画</a>
+					</li>
+					<li class="headerMenu__item">
+						<a href="<?php bloginfo('url');?>/seminar/archive_lesson">生講義の過去動画</a>
+					</li>
+					<li class="headerMenu__item -button">
+						<a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8" class="headerMenu__button -secondary">動画教材一覧</a>
+					</li>
+					<li class="headerMenu__item -button">
+						<a href="https://ojtpr.slack.com" target="_blank" class="headerMenu__button -primary">PR塾専用slack</a>
+					</li>
+				</ul>
+			</nav>
+			<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
+				<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
+			<?php endif; ?>
+		</header>
+		<div class="menuBox">
+			<div class="close"><img src="<?php bloginfo('template_url');?>/img/common/close.png" alt="close" width="32"></div>
+			<div class="innerBox">
+				<ul class="naviUl">
+					<li><a href="<?php bloginfo('url');?>">トップページ</a></li>
+					<?php
+											$args = array(
+													'hide_empty'=> false,
+													'parent'=> 1
+											);
+											$allterms = get_categories($args);
+											$count = count($allterms);
+											if ($count > 0) {
+													foreach ($allterms as $allterm) {
+															$alltermlink=get_category_link($allterm->term_id);
+															$alltermname=$allterm->name;
+															if ($alltermname != 'その他') {
+																	?>
+									<li><a href="<?php echo $alltermlink ?>"><?php echo $alltermname; ?></a></li>
+								<?php
+															}
+													}
+											}
+									?>
+					<li><a href="<?php bloginfo('url');?>/schedule">OJT式PR塾スケジュール</a></li>
+					<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="30">PR塾専用slack</a></li>
+					<li><a href="<?php echo home_url('/logout/'); ?>">ログアウト</a></li>
+				</ul>
 			</div>
-		</a>
-		<div class="hBox">
-			<h1><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/logo.png" alt="OJT式PR塾" width="265"></a></h1>
-			<ul class="comBtnUl pc">
-				<li><a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8"><img src="<?php bloginfo('template_url');?>/img/common/icon01.png" alt="動画教材一覧" width="45">動画教材一覧</a></li>
-				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="45">PR塾専用slack</a></li>
-			</ul>
 		</div>
-		<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
-			<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
-		<?php endif; ?>
-	</header>
-	<div class="menuBox">
-		<div class="close"><img src="<?php bloginfo('template_url');?>/img/common/close.png" alt="close" width="32"></div>
-		<div class="innerBox">
-			<ul class="naviUl">
-				<li><a href="<?php bloginfo('url');?>">トップページ</a></li>
-				<?php
-                    $args = array(
-                        'hide_empty'=> false,
-                        'parent'=> 1
-                    );
-                    $allterms = get_categories($args);
-                    $count = count($allterms);
-                    if ($count > 0) {
-                        foreach ($allterms as $allterm) {
-                            $alltermlink=get_category_link($allterm->term_id);
-                            $alltermname=$allterm->name;
-                            if ($alltermname != 'その他') {
-                                ?>
-								<li><a href="<?php echo $alltermlink ?>"><?php echo $alltermname; ?></a></li>
-							<?php
-                            }
-                        }
-                    }
-                ?>
-				<li><a href="<?php bloginfo('url');?>/schedule">OJT式PR塾スケジュール</a></li>
-				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="30">PR塾専用slack</a></li>
-				<li><a href="<?php echo home_url('/logout/'); ?>">ログアウト</a></li>
-			</ul>
-		</div>
-	</div>
 <?php } ?>
 	<main role="main">
