@@ -81,33 +81,36 @@
 			<?php endif; ?>
 			<nav class="headerMenu">
 				<h1><a href="<?php bloginfo('url');?>" class="headerMenu__logoLink">OJT式PR塾専用サイト</a></h1>
-				<ul class="headerMenu__list pc">
-					<li class="headerMenu__item">
+				<ul class="headerMenu__list">
+					<li class="headerMenu__item pc">
 						<a href="<?php bloginfo('url');?>/seminar/pr_step">PRステップ完全攻略動画</a>
 					</li>
-					<li class="headerMenu__item">
+					<li class="headerMenu__item pc">
 						<a href="<?php bloginfo('url');?>/seminar/newcontents">笹木郁乃 最新追加動画</a>
 					</li>
-					<li class="headerMenu__item">
+					<li class="headerMenu__item pc">
 						<a href="<?php bloginfo('url');?>/seminar/media_exchange_metting">メディア交流会録画動画</a>
 					</li>
-					<li class="headerMenu__item">
+					<li class="headerMenu__item pc">
 						<a href="<?php bloginfo('url');?>/seminar/archive_lesson">生講義の過去動画</a>
 					</li>
 					<li class="headerMenu__item -button">
-						<a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8" class="headerMenu__button -secondary">動画教材一覧</a>
+						<a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8" class="headerMenu__button -secondary">動画教材<br class="sp">一覧</a>
 					</li>
 					<li class="headerMenu__item -button">
-						<a href="https://ojtpr.slack.com" target="_blank" class="headerMenu__button -primary">PR塾専用slack</a>
+						<a href="https://ojtpr.slack.com" target="_blank" class="headerMenu__button -primary">PR塾<br class="sp">専用slack</a>
+					</li>
+					<li class="headerMenu__item menu sp">
+						<span class="l-header__trigger" href="#" @click="toggleMenu" id="trigger">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
 					</li>
 				</ul>
 			</nav>
-			<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
-				<div class="menu sp"><img src="<?php bloginfo('template_url');?>/img/common/menu.png" alt="menu" width="64"></div>
-			<?php endif; ?>
 		</header>
 		<div class="menuBox">
-			<div class="close"><img src="<?php bloginfo('template_url');?>/img/common/close.png" alt="close" width="32"></div>
 			<div class="innerBox">
 				<ul class="naviUl">
 					<li><a href="<?php bloginfo('url');?>">トップページ</a></li>
