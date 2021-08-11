@@ -59,7 +59,7 @@
 				</picture>
 			</h2>
 			<ul class="comBtnUl">
-				<li><a href="<?php bloginfo('url');?>/seminar/pr%E8%A8%AD%E8%A8%88%E7%B7%A8"><img src="<?php bloginfo('template_url');?>/img/common/icon01.png" alt="動画教材一覧" width="45">動画教材一覧</a></li>
+				<li><a href="<?php bloginfo('url');?>/category-index"><img src="<?php bloginfo('template_url');?>/img/common/icon01.png" alt="動画教材一覧" width="45">動画教材一覧</a></li>
 				<li><a href="https://ojtpr.slack.com" target="_blank"><img src="<?php bloginfo('template_url');?>/img/common/icon02.png" alt="PR塾専用slack" width="45">PR塾専用slack</a></li>
 			</ul>
 		</div>

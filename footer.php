@@ -13,6 +13,9 @@
 				<a href="<?php echo home_url('/terms/') ?>" target="_blank">利用規約</a>
 			</li>
 			<li class="footer-linksItem">
+				<a href="https://tayori.com/faq/e7d56a5004d4fa272e265e3fc160ee6f3f7359cb" target="_blank">よくある質問</a>
+			</li>
+			<li class="footer-linksItem">
 				<a href="https://lita-pr.com/about-lita/" target="_blank">運営会社</a>
 			</li>
 			<li class="footer-linksItem">
