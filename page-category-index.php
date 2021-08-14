@@ -50,7 +50,7 @@
 							<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/sasaki_ikuno_lesson.jpg" alt="">
 						</li>
 					</ul>
-					<a href="/category/latest_added_video" class="category-index-btn">最新追加動画はこちら</a>
+					<a href="/category/sasaki_ikuno_lesson" class="category-index-btn">最新追加動画はこちら</a>
 				</div>
 			</div>
 			<div class="category-index-item -small">
@@ -82,7 +82,7 @@
 							<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/archive_lesson.jpg" alt="">
 						</li>
 					</ul>
-					<a href="" class="category-index-btn">生講義動画はこちら</a>
+					<a href="<?php echo home_url(); ?>/archive_lesson" class="category-index-btn">生講義動画はこちら</a>
 				</div>
 			</div>
 		</div>

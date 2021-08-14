@@ -8,9 +8,9 @@
 						<li><a href="<?php echo home_url('/category-index') ?>">OJT式PR塾の進め方</a></li>
 						<?php foreach(get_the_category() as $category) {
 							if($category->parent != 0){?>
-								<li> > <a href="<?php echo get_category_link( $category->term_id ); ?>"><?php echo $category->cat_name ?></a> > </li>
+								<li> > <a href="<?php echo get_category_link( $category->term_id ); ?>"><?php echo $category->cat_name ?></a></li>
 							<?php } }?>
-						<li><?php the_title(); ?></li>
+						<li> > <?php the_title(); ?></li>
 					</ul>
 				</div>
 				<a href="<?php echo home_url('/logout/'); ?>" class="logoutButtonLink">
@@ -22,9 +22,12 @@
 			</div>
 			<div class="content">
 				<section class="seminarBox">
-					<h2 class="headline02"><?php foreach(get_the_category() as $category){
-						if($category->parent != 0){?><span><?php echo $category->cat_name ?></span><?php }
-					}?></h2>
+					<?php foreach(get_the_category() as $category) {
+						if($category->parent != 0) { ?>
+						<h2 class="headline02">
+							<span><?php echo $category->cat_name ?></span>
+						</h2>
+					<?php }}?>
 					<div class="wrapper">
 						<article id="conts">
 							<h2 class="headline03"><?php the_title(); ?></h2>
@@ -37,7 +40,27 @@
 								</div>
 								<?php } ?>
 								<?php if(have_posts()): while (have_posts()) : the_post();?>
-								<?php the_content();?>
+								<div class="contentBox">
+									<?php the_content();?>
+								</div>
+								<?php
+									$related_movie = get_field( "related_movie", false, false );
+
+									if( $related_movie ) { ?>
+										<div class="related-movie-wrapper">
+											<h2 class="related-movie-heading">関連動画</h2>
+												<?php the_field('related_movie') ?>
+										</div>
+									<?php } ?>
+								<?php
+									$recommend = get_field( "recommend", false, false );
+
+									if( $recommend ) { ?>
+										<div class="recommend-wrapper">
+											<h2 class="recommend-heading">視聴推奨</h2>
+												<?php the_field('recommend') ?>
+										</div>
+									<?php } ?>
 								<?php endwhile; endif;?>
 							</div>
 							<div class="returnBtn"><?php foreach(get_the_category() as $category){

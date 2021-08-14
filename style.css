@@ -414,16 +414,21 @@ a.headerMenu__logoLink {
   justify-content: space-between;
 }
 #pagePath ul {
+  display: flex;
   max-width: 1300px;
   margin: 20px 0 0;
 }
 #pagePath ul li {
   display: inline-block;
+  margin-left: 6px;
+  overflow: hidden;
   font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝",
     serif;
   font-size: 1.3rem;
   color: #2e2e2e;
+  text-overflow: ellipsis;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 @media all and (min-width: 897px) {
   #pagePath ul a:hover {
@@ -438,6 +443,8 @@ a.headerMenu__logoLink {
 #gFooter {
   position: relative;
   padding: 0 58px 38px;
+}
+#gFooter a {
   color: #fff;
 }
 #gFooter .fLogo {
@@ -455,6 +462,7 @@ a.headerMenu__logoLink {
 #gFooter .copyright {
   font-size: 1.2rem;
   font-style: normal;
+  color: #fff;
   text-align: center;
   letter-spacing: 1.5px;
 }
@@ -1024,16 +1032,6 @@ a.headerMenu__logoLink {
   border-bottom: 2px solid #202d73;
 }
 
-.detailBox ul {
-  padding: 24px;
-  font-size: 16px;
-  background-color: #dee0ea;
-}
-
-.detailBox li::before {
-  content: "・";
-}
-
 @media all and (max-width: 896px) {
   .headline03 {
     margin-bottom: 17px;
@@ -1115,7 +1113,7 @@ a.nolink:hover {
 }
 .top .futureBox {
   padding: 50px 0 43px;
-  margin: 0 -15px 99px;
+  margin: 0 0 99px;
   background: url(img/index/future_bg.jpg) no-repeat left top;
   background-size: cover;
 }
@@ -1632,13 +1630,52 @@ a.nolink:hover {
   margin-bottom: 42px;
 }
 .seminar .detailBox p {
-  margin-bottom: 26px;
-  font-weight: bold;
+  margin-bottom: 24px;
   line-height: 1.73;
 }
-.seminar .detailBox p:last-child {
-  margin-bottom: 0;
+
+.contentBox {
+  margin-bottom: 40px;
 }
+
+.seminar .related-movie-wrapper {
+  padding: 24px;
+  border: 2px solid #202d73;
+}
+
+.seminar .related-movie-heading,
+.seminar .recommend-heading {
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #202d73;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #202d73;
+}
+
+.seminar .related-movie-wrapper p,
+.seminar .recommend-wrapper p {
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.seminar .related-movie-wrapper a,
+.seminar .recommend-wrapper a {
+  color: #202d73;
+  text-decoration: underline;
+}
+
+.seminar .recommend-wrapper {
+  padding: 24px;
+  margin-top: 40px;
+  background-color: #dee0ea;
+}
+
+.seminar mark {
+  background: linear-gradient(transparent 70%, #1f6ed7 0%);
+}
+
 @media all and (max-width: 896px) {
   .seminar .content {
     width: 96%;
@@ -2587,6 +2624,7 @@ a.category-index-btn::after {
 }
 
 .cat-article-thumbnails img {
+  width: 100%;
   box-shadow: 0px 4px 16px 4px rgba(51, 51, 51, 0.14);
 }
 
@@ -2621,9 +2659,9 @@ a.category-index-btn::after {
 
 .cat-article-info {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   margin-top: 8px;
 }
 

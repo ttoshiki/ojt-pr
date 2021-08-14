@@ -276,3 +276,4 @@ function custom_pre_get_posts( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'custom_pre_get_posts' );
+
