@@ -524,6 +524,10 @@ a.headerMenu__logoLink {
     font-size: 1rem;
     letter-spacing: 1px;
   }
+
+  .seminar .fLogo a {
+    font-size: 16px;
+  }
 }
 /*------------------------------------------------------------
 	汎用スタイル
@@ -725,14 +729,14 @@ a.headerMenu__logoLink {
   box-sizing: border-box;
   width: 85%;
   max-width: 1300px;
-  padding: 56px 0;
+  padding: 56px 16px;
   margin: 48px auto 0;
   background-color: #fff;
   box-shadow: 0px 0px 17.43px 3.57px rgb(51 51 51 / 13%);
 }
 @media all and (max-width: 896px) {
   .content {
-    padding: 35px 10px 31px;
+    padding: 35px 0 31px;
     margin: 64px 19px 0;
   }
 }
@@ -1692,6 +1696,26 @@ a.nolink:hover {
   .seminar .seminarBox {
     width: 94%;
   }
+
+  .contentBox {
+    margin-bottom: 24px;
+  }
+
+  .seminar .related-movie-wrapper {
+    padding: 16px;
+  }
+
+  .seminar .recommend-wrapper {
+    padding: 16px;
+    margin-top: 24px;
+  }
+
+  .seminar .related-movie-heading,
+  .seminar .recommend-heading {
+    padding-bottom: 2px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
 }
 
 .returnBtn {
@@ -2258,21 +2282,18 @@ footer
   .footer-linksList {
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 16px 24px;
+    margin: 0 0 24px;
     font-size: 13px;
   }
 
   .footer-linksItem {
     width: 48%;
     margin-top: 8px;
+    font-size: 12px;
   }
 
   .footer-linksItem:not(:first-child) {
     margin-left: 0;
-  }
-
-  .footer-linksItem:nth-child(even) {
-    margin-left: 12px;
   }
 }
 
@@ -2630,7 +2651,7 @@ a.category-index-btn::after {
 
 .cat-article-number {
   position: absolute;
-  bottom: -48px;
+  bottom: -24%;
   left: 4px;
   font-size: min(5vw, 72px);
   font-weight: 600;
@@ -2662,12 +2683,12 @@ a.category-index-btn::after {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
 }
 
 .cat-article-movie-info {
   display: flex;
   align-items: center;
+  margin: 8px 8px 0 0;
 }
 
 .cat-article-icon {
@@ -2701,6 +2722,7 @@ a.category-index-btn::after {
 .cat-article-tags {
   display: flex;
   align-items: center;
+  margin-top: 8px;
 }
 
 @media all and (max-width: 896px) {
@@ -2716,6 +2738,10 @@ a.category-index-btn::after {
 
   .category-index-heading {
     font-size: 22px;
+  }
+
+  .cat-child-name-wrapper:not(:first-of-type) {
+    margin-top: 40px;
   }
 
   .category-index-inner.-tripleCol {
@@ -2753,5 +2779,96 @@ a.category-index-btn::after {
   a.category-index-btn::after {
     right: 5%;
     background-size: 10px auto;
+  }
+
+  .cat-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .latest-article-date {
+    margin: 8px 0 0;
+    font-size: 12px;
+  }
+
+  .cat-section .headline02 {
+    padding: 12px 56px;
+    letter-spacing: 2px;
+  }
+
+  .cat-child-name {
+    font-size: 18px;
+  }
+
+  .cat-article-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cat-article-number {
+    bottom: -17%;
+    font-size: min(7vw, 64px);
+  }
+}
+
+@media all and (max-width: 480px) {
+  .cat-section {
+    width: 90%;
+  }
+
+  .cat-section .headline02 {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.5rem;
+  }
+
+  .cat-article-list {
+    grid-template-columns: 1fr;
+    grid-gap: 1%;
+  }
+
+  .cat-article-item {
+    width: 90%;
+    margin: 24px auto 0;
+  }
+
+  .cat-article-number {
+    font-size: 12vw;
+  }
+
+  .cat-article-heading {
+    margin-top: 32px;
+    font-size: 18px;
+  }
+
+  .latest-article-date-wrapper {
+    width: 100%;
+    text-align: right;
+  }
+
+  .latest-article-date {
+    font-size: 11px;
+    margin: 12px 0 0;
+  }
+
+  .cat-article-excerpt {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .cat-article-icon {
+    width: 14px;
+  }
+
+  .cat-movie-time {
+    font-size: 11px;
+  }
+
+  .cat-article-info {
+    margin-top: 4px;
+  }
+
+  .cat-article-tag {
+    font-size: 10px;
   }
 }

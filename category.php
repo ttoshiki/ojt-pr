@@ -33,7 +33,7 @@
 					endwhile;
 					wp_reset_postdata();
 					endif;
-						echo '<time class="latest-article-date">' . date('n月j日',strtotime($latest_article_date)) . ' 最新</time>';
+						echo '<div class="latest-article-date-wrapper"><time class="latest-article-date">' . date('n月j日',strtotime($latest_article_date)) . ' 最新</time></div>';
 				?>
 			<?php endif; ?>
 		</div>
@@ -175,16 +175,16 @@
 			<ul class="cat-article-list">
 				<?php while ($the_query->have_posts()): $the_query->the_post(); ?>
 				<li id="post-<?php the_ID(); ?>" <?php post_class('cat-article-item'); ?>>
-					<a href="<?php echo get_permalink(); ?>" class="cat-article-link">
-						<div class="cat-article-thumbnails">
-							<?php
+				<a href="<?php echo get_permalink(); ?>" class="cat-article-link">
+					<div class="cat-article-thumbnails">
+						<?php
 								if ( has_post_thumbnail() ) {
-									echo get_the_post_thumbnail('medium');
+									the_post_thumbnail('medium');
 								}
 							?>
 						</div>
 						<h3 class="cat-article-heading"><?php echo get_the_title(); ?></h3>
-						<div class="cat-article-excerpt"><?php the_excerpt(); ?></div>
+						<div class="cat-article-excerpt"><?php echo get_the_excerpt(); ?></div>
 					</a>
 				</li>
 				<?php endwhile; ?>
