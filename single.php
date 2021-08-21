@@ -63,33 +63,13 @@
 									<?php } ?>
 								<?php endwhile; endif;?>
 							</div>
-							<div class="returnBtn"><?php foreach(get_the_category() as $category){
-						if($category->parent != 0){?><a href="<?php echo get_category_link( $category->term_id ); ?>">&lt;<span><?php echo $category->cat_name; ?></span>一覧へ</a><?php }
-					}?></div>
+							<div class="returnBtn">
+								<?php foreach(get_the_category() as $category) {
+									if(!$category->parent) { ?>
+										<a href="<?php echo get_category_link( $category->term_id ); ?>">&lt;<span><?php echo $category->cat_name; ?></span>一覧へ</a>
+								<?php }}?>
+							</div>
 						</article>
-						<aside id="sideBar">
-							<ul class="sideUl">
-								<?php
-									$args = array(
-										'hide_empty'=> false,
-										// 'parent'=> 1
-										'parent'=> 2 // テスト環境
-									);
-									$allterms = get_categories($args);
-									$count = count($allterms);
-									if($count > 0){
-										foreach ($allterms as $allterm) {
-											$alltermlink=get_category_link($allterm->term_id);
-											$alltermname=$allterm->name;
-											if ($alltermname != 'その他'){
-											?>
-								<li <?php foreach(get_the_category() as $category){ if($category->term_id == $allterm->term_id){?>class="on"<?php }} ?>><a href="<?php echo $alltermlink ?>"><span><?php $text = get_field('ff_text','category_'.$allterm->term_id); if($text){echo $text;}else{echo $alltermname;}; ?></span></a></li>
-											<?php }
-										}
-									}
-								?>
-							</ul>
-						</aside>
 					</div>
 				</section>
 			</div>

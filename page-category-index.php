@@ -33,7 +33,7 @@
 						<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/pr_step03.jpg" alt="">
 					</li>
 				</ul>
-				<a href="/category/pr_step" class="category-index-btn">ステップごとの動画はこちら</a>
+				<a href="<?php echo home_url('/category/pr_step'); ?>" class="category-index-btn">ステップごとの動画はこちら</a>
 			</div>
 		</div>
 		<div class="category-index-inner -tripleCol">
@@ -50,7 +50,7 @@
 							<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/sasaki_ikuno_lesson.jpg" alt="">
 						</li>
 					</ul>
-					<a href="/category/sasaki_ikuno_lesson" class="category-index-btn">最新追加動画はこちら</a>
+					<a href="<?php echo home_url('/category/sasaki_ikuno_lesson'); ?>" class="category-index-btn">最新追加動画はこちら</a>
 				</div>
 			</div>
 			<div class="category-index-item -small">
@@ -66,7 +66,7 @@
 							<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/media_lesson.jpg" alt="">
 						</li>
 					</ul>
-					<a href="/category/media_exchange_meeting" class="category-index-btn">交流会録画動画はこちら</a>
+					<a href="<?php echo home_url('/category/media_exchange_meeting'); ?>" class="category-index-btn">交流会録画動画はこちら</a>
 				</div>
 			</div>
 			<div class="category-index-item -small">
