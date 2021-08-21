@@ -23,7 +23,18 @@
 			<h2 class="headline02"><span><?php echo $cat->cat_name ?></span></h2>
 			<?php if(!is_category('news')): ?>
 				<?php
-					$args = array( 'post_type' => 'post', 'taxonomy' => 'category' );
+					// var_dump($cat);
+					$args = array(
+						'post_type' => 'post',
+						'posts_per_page' => -1,
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'category',
+								'field'    => 'slug',
+								'terms'    => $cat->slug,
+							),
+						),
+					);
 					$the_query = new WP_Query($args); if($the_query->have_posts()):
 					$latest_article_date = 1;
 					while ($the_query->have_posts()): $the_query->the_post();
