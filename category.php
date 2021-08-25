@@ -23,7 +23,6 @@
 			<h2 class="headline02"><span><?php echo $cat->cat_name ?></span></h2>
 			<?php if(!is_category('news')): ?>
 				<?php
-					// var_dump($cat);
 					$args = array(
 						'post_type' => 'post',
 						'posts_per_page' => -1,
@@ -63,6 +62,7 @@
 						// 入塾中 or 管理者
 						if (current_user_can('contributor') || current_user_can('administrator')) {
 							$pr_step_args = array(
+								'posts_per_page' => -1,
 								'post_type' => get_post_type(),
 								'taxonomy' => $taxonomy_name,
 								'term' => $taxonomy->slug,
@@ -81,6 +81,7 @@
 							$registered_one_year_later = date('Y-m-d', strtotime($registered_biginning_of_month_datetime->modify('+1 year')->format('Y-m-d')));
 
 							$pr_step_args = array(
+								'posts_per_page' => -1,
 								'post_type' => get_post_type(),
 								'taxonomy' => $taxonomy_name,
 								'term' => $taxonomy->slug,
