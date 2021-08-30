@@ -29,7 +29,6 @@ function ojt_pr_scripts()
 add_action('wp_enqueue_scripts', 'ojt_pr_scripts');
 
 //remove_filter (  'the_content' ,  'wpautop'  );
-//remove_filter (  'the_excerpt' ,  'wpautop'  );
 //remove_filter( 'comment_text', 'wpautop',  30 );
 //remove_filter('the_content', 'balanceTags');
 //remove_filter('the_content', 'wptexturize');

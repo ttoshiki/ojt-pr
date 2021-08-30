@@ -2636,7 +2636,7 @@ a.category-index-btn::after {
 
 .cat-article-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, calc(92% / 3));
   grid-gap: 2% 4%;
 }
 
@@ -2742,7 +2742,7 @@ a.category-index-btn::after {
   }
 
   .category-index-heading {
-    font-size: 22px;
+    font-size: 21px;
   }
 
   .cat-child-name-wrapper:not(:first-of-type) {

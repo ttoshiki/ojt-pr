@@ -121,7 +121,7 @@
 								?>
 							</div>
 							<h3 class="cat-article-heading"><?php echo get_the_title($tax_post->ID); ?></h3>
-							<div class="cat-article-excerpt"><?php echo get_the_excerpt($tax_post->ID); ?></div>
+							<div class="cat-article-excerpt"><p><?php echo get_the_excerpt($tax_post->ID); ?></p></div>
 							<div class="cat-article-info">
 								<div class="cat-article-movie-info">
 									<?php
@@ -196,7 +196,7 @@
 							?>
 						</div>
 						<h3 class="cat-article-heading"><?php echo get_the_title(); ?></h3>
-						<div class="cat-article-excerpt"><?php echo get_the_excerpt(); ?></div>
+						<div class="cat-article-excerpt"><p><?php echo get_the_excerpt(); ?></p></div>
 					</a>
 				</li>
 				<?php endwhile; ?>
