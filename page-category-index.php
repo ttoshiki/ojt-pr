@@ -21,7 +21,7 @@
 				<span class="category-index-number">1</span>
 				<h2 class="category-index-heading">PRステップ完全攻略動画</h2>
 				<span class="category-index-en">PR Step Lesson</span>
-				<p class="category-index-paragraph -center">まずこちらで予習・復習をしてみてください（最新の生講義過去動画より切り取り、ステップごとにご紹介しております）</p>
+				<p class="category-index-paragraph -center">テキストと合わせて、こちらの動画でPRノウハウの学習を進めてください。<br>（PR塾の生講義6ヶ月間で習得できる内容が、ステップごとに学習ができます）</p>
 				<ul class="category-index-photo-list">
 					<li class="category-index-photo-item">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/pr_step01.jpg" alt="">
@@ -42,7 +42,7 @@
 				<div class="category-index-item-text">
 					<h2 class="category-index-heading">笹木郁乃　最新追加動画</h2>
 					<span class="category-index-en">Sasaki Ikuno Lesson</span>
-					<p class="category-index-paragraph">講義内では説明しきれなかった情報の追加動画です。視聴をお勧めいたします。</p>
+					<p class="category-index-paragraph">よりPRで結果を出すために、笹木郁乃が是非皆さんに追加でお伝えしたい！というPRノウハウを、毎月1つ、最新コンテンツを作成し、動画でアップしていきます。<br>講義内ではお伝えしていない内容となっており、テキストにも掲載されていないノウハウや情報になっております。ステップアップのために、ぜひご視聴ください。</p>
 				</div>
 				<div class="category-index-item-bottom">
 					<ul class="category-index-photo-list">
