@@ -29,7 +29,6 @@ function ojt_pr_scripts()
 add_action('wp_enqueue_scripts', 'ojt_pr_scripts');
 
 //remove_filter (  'the_content' ,  'wpautop'  );
-//remove_filter (  'the_excerpt' ,  'wpautop'  );
 //remove_filter( 'comment_text', 'wpautop',  30 );
 //remove_filter('the_content', 'balanceTags');
 //remove_filter('the_content', 'wptexturize');
@@ -267,7 +266,6 @@ function custom_password_change_email( $pass_change_email ) {
 }
 add_filter( 'password_change_email', 'custom_password_change_email' );
 
-
 function custom_pre_get_posts( $query ) {
     if ( is_admin() || ! $query -> is_main_query() ) return;
 
@@ -276,3 +274,23 @@ function custom_pre_get_posts( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'custom_pre_get_posts' );
+
+// 最終ログイン
+function user_last_login( $user_login, $user ) {
+    update_user_meta( $user->ID, 'last_login', time() );
+}
+add_action( 'wp_login', 'user_last_login', 10, 2 );
+
+function add_users_columns( $columns ) {
+    $columns['columns_lastlogin'] = '最終ログイン';
+    return $columns;
+}
+function add_users_custom_column( $column_name, $column, $user_id ) {
+    if ( $column == 'columns_lastlogin' ) {
+        $user_info = get_userdata($user_id);
+        $user_lastlogin_time = $user_info->last_login;
+        return date('Y/m/d',intval($user_lastlogin_time));
+    }
+}
+add_filter( 'manage_users_columns', 'add_users_columns' );
+add_filter( 'manage_users_custom_column', 'add_users_custom_column', 10, 3 );
