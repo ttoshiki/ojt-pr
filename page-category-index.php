@@ -21,7 +21,11 @@
 				<span class="category-index-number">1</span>
 				<h2 class="category-index-heading">PRステップ完全攻略動画</h2>
 				<span class="category-index-en">PR Step Lesson</span>
-				<p class="category-index-paragraph -center">テキストと合わせて、こちらの動画でPRノウハウの学習を進めてください。<br>（PR塾の生講義6ヶ月間で習得できる内容が、ステップごとに学習ができます）</p>
+				<div class="category-index-item-paragraph-wrapper">
+					<p class="category-index-paragraph -center">
+					テキストと合わせて、こちらの動画でPRノウハウの学習を進めてください。<br>（PR塾の生講義6ヶ月間で習得できる内容が、ステップごとに学習ができます）
+					</p>
+				</div>
 				<ul class="category-index-photo-list">
 					<li class="category-index-photo-item">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/category-index/pr_step01.jpg" alt="">
@@ -58,7 +62,13 @@
 				<div class="category-index-item-text">
 					<h2 class="category-index-heading">メディア交流会録画動画</h2>
 					<span class="category-index-en">Media Lesson</span>
-					<p class="category-index-paragraph">メディアの方がどのようなことを考えて取材しているか ぜひ参考にしてみてください。</p>
+					<p class="category-index-paragraph">
+						毎月行われている、メディア交流会。メディアの方に講師がみなさまの代表として、ネタの探し方やプレスリリースをどのようにチェックするか等、質問しております。また、プレゼン終了後の総評として、どういったポイントでプレゼンを行うとメディアの方に響きやすいか等に関してもご案内頂いております。メディアの方がどのようなことを考えて取材しているか ぜひ参考にしてみてください。
+					</p>
+					<ul class="category-index-caution-list">
+						<li class="category-index-caution-item">※こちらの動画は録画許可が出た場合のみ展開しております。</li>
+						<li class="category-index-caution-item">※動画はプレゼン部分はなく、Q&Aおよび総評部分のみとなります。</li>
+					</ul>
 				</div>
 				<div class="category-index-item-bottom">
 					<ul class="category-index-photo-list">
